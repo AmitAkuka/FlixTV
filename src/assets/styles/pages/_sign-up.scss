@@ -1,0 +1,15 @@
+.main-sign-up-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  padding-top: 35px;
+  background-color: rgba(5, 8, 17, 0.9607843137);
+  color: white;
+}
+
+.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-fullWidth.MuiButtonBase-root.css-1kezstn-MuiButtonBase-root-MuiButton-root {
+  transition: all 0.3s;
+  &:hover {
+    background-color: #ff9500;
+  }
+}

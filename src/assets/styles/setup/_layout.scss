@@ -1,0 +1,18 @@
+.main-layout{
+  padding: 1.1rem 20rem;
+}
+
+@media (max-width: 1300px) {
+  .main-layout{
+    padding: 2rem 10rem;
+  }
+}
+
+@media (max-width: 800px) {
+  html{
+    font-size: 14px;
+  }
+  .main-layout{
+    padding: 2rem 1rem;
+  }
+}

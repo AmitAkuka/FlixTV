@@ -1,0 +1,144 @@
+.main-home-container {
+  .main-category-filter-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-color: #050811f5;
+    & .categories-container {
+      display: flex;
+      gap: 25px;
+      overflow-x: hidden;
+      & button {
+        border: none;
+        border-radius: 5px;
+        white-space: nowrap;
+        font-size: 1.2rem;
+        font-family: 'Oswald';
+        padding: 5px 20px;
+        color: white;
+        background-color: darkgrey;
+
+        &.active,
+        &:hover {
+          background-color: #fe6b02;
+        }
+      }
+    }
+    & .next-page-btn,
+    & .prev-page-btn {
+      position: absolute;
+      border: none;
+      border-radius: 20px;
+      height: 35px;
+      padding: 8px;
+      line-height: 1px;
+      background-color: gray;
+      color: white;
+      & svg {
+        font-size: 1.2rem;
+      }
+      &:hover {
+        background-color: #a5a5af;
+      }
+    }
+    & .next-page-btn {
+      right: 0;
+      margin-right: 18rem;
+    }
+    & .prev-page-btn {
+      left: 0;
+      margin-left: 18rem;
+    }
+  }
+  .show-list-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 304.5px));
+    gap: 15px;
+    background-color: #050811f5;
+    padding-bottom: 80px;
+    min-height: 55vh;
+    & .show-preview-container {
+      position: relative;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 450px;
+      border-radius: 5px;
+      transition: all 0.3s;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.7;
+        transform: scale(1.03);
+      }
+
+      & .show-preview-details {
+        position: absolute;
+        bottom: 0;
+        color: white;
+        width: 100%;
+        padding: 15px;
+        & > p {
+          font-family: sans-serif;
+        }
+        & > h2 {
+          font-family: 'Oswald';
+        }
+        & > span {
+          color: #a5a5a5;
+          font-family: 'Oswald';
+        }
+      }
+    }
+
+    & > h2{
+      color: white;
+      font-family: 'Oswald';
+      text-align: center;
+    }
+  }
+
+  .loader-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 5rem;
+    // height: 57.1vh;
+    height: 20vh;
+    background-color: #050811f5;
+
+    & img {
+      height: 50px;
+      aspect-ratio: 1/1;
+    }
+  }
+}
+
+@media (max-width: 1800px) {
+  .main-home-container{
+    & .main-hero-container{
+      & h1{
+        font-size: 3rem;
+      }
+    }
+  }
+  // html{
+  //   font-size: 14px;
+  // }
+}
+@media (max-width: 1520px) {
+  .main-header-container{
+    padding-inline-start: 15rem;
+    padding-inline-end: 15rem;
+  }
+  .main-layout:not(.main-header-container){
+    padding: 2rem 15rem;
+  }
+  .main-home-container {
+  & .main-category-filter-container {
+    & .next-page-btn {
+      margin-right: 13rem;
+    }
+  }
+}
+  // html{
+  //   font-size: 14px;
+  // }
+}

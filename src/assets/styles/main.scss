@@ -1,0 +1,30 @@
+// Setup
+
+// @import './setup/variables';
+// @import './setup/functions';
+// @import './setup/mixins';
+@import './setup/typography';
+@import './setup/layout';
+
+// Basics
+
+@import './basics/base';
+@import './basics/animations';
+@import './basics/helpers';
+
+// Loader
+
+// @import './cmps/loader';
+
+// Components
+@import './cmps/app-header';
+@import './cmps/app-hero';
+@import './cmps/app-footer';
+
+
+// Pages
+@import './pages/app-home';
+@import './pages/show-details';
+@import './pages/sign-in';
+@import './pages/sign-up';
+@import './pages/app-watchlist';

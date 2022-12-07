@@ -1,0 +1,42 @@
+.main-header-container{
+  display: flex;
+  position: fixed;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  z-index: 10;
+  font-family: 'Righteous';
+  background-color: #050811;
+  color: white;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  & > a{
+    display: flex;
+    align-items: flex-end;
+    gap: 5px;
+    font-size: 1.8rem;
+    & img{
+      height: 38px;
+      aspect-ratio: 1/1;
+    }
+  }
+
+  .header-btns-container{
+    display: flex;
+    gap: 15px;
+    & > .logout-btn{
+      cursor: pointer;
+    }
+    & > *{
+      font-family: "Righteous";
+      font-weight: 400;
+      font-size: 1.2rem;
+
+
+      & > span{
+        color: 	#FCAF45;
+      }
+    }
+  }
+}

@@ -1,0 +1,52 @@
+.main-hero-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../../img/heroBackground.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 325px;
+  gap: 20px;
+  
+  & > h1{
+    font-size: 4rem;
+    font-family: 'Righteous';
+    color: white;
+    text-shadow: 0 0 3px #fe6b02, 0 0 3px #fe6b02, 0 0 3px #fe6b02, 0 0 3px #fe6b02;
+  }
+  
+  & .show-search-main-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    
+    & > .search-input {
+      background-color: #141414;
+      padding: 1.1rem 1rem 1.1rem 1.5rem;
+      width: calc(100% - 38rem);
+      border-bottom-left-radius: 10px;
+      border-top-left-radius: 10px;
+      border: none;
+      outline: none;
+      font-size: 1.2rem;
+      font-family: 'Oswald';
+      color: white;
+    }
+
+    & > .search-btn {
+      height: 100%;
+      padding: 0px 15px 0px 15px;
+      background-color: #fe6b02;
+      border: none;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+
+      & > svg {
+        height: 28px;
+        width: 28px;
+      }
+    }
+  }
+}

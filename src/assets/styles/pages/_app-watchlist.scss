@@ -1,0 +1,57 @@
+.main-app-watchlist-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 100px;
+    min-height: 100vh;
+    color: white;
+    font-family: "Righteous";
+    background-color: rgba(5, 8, 17, 0.9607843137);
+
+    & > .show-list-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 304.5px));
+        gap: 15px;
+        padding-bottom: 80px;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(5, 8, 17, 0.9607843137);
+        & .show-preview-container {
+          position: relative;
+          background-repeat: no-repeat;
+          background-size: cover;
+          height: 450px;
+          border-radius: 5px;
+          transition: all 0.3s;
+          cursor: pointer;
+          &:hover {
+            opacity: 0.7;
+            transform: scale(1.03);
+          }
+    
+          & .show-preview-details {
+            position: absolute;
+            bottom: 0;
+            color: white;
+            width: 100%;
+            padding: 15px;
+            & > p {
+              font-family: sans-serif;
+            }
+            & > h2 {
+              font-family: 'Oswald';
+            }
+            & > span {
+              color: #a5a5a5;
+              font-family: 'Oswald';
+            }
+          }
+        }
+    
+        & > h2{
+          color: white;
+          font-family: 'Oswald';
+          text-align: center;
+        }
+      }
+}
