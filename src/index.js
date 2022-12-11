@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { App } from './root-cmp'
 import './assets/styles/main.scss'
 import configureStore from './js/configure-store'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { HashRouter as Router } from 'react-router-dom'
 
 const store = configureStore()
 
