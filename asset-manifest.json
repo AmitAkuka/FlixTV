@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/FlixTV/static/css/main.df0c26f2.css",
+    "main.js": "/FlixTV/static/js/main.f87c5782.js",
+    "static/media/noImage.png": "/FlixTV/static/media/noImage.2dd79b44128643bf1b22.png",
+    "static/media/heroBackground.jpg": "/FlixTV/static/media/heroBackground.9e37b5f2cde1d9785cf9.jpg",
+    "static/media/Oswald-VariableFont_wght.ttf": "/FlixTV/static/media/Oswald-VariableFont_wght.ee815f542584c61b67c2.ttf",
+    "static/media/Righteous-Regular.ttf": "/FlixTV/static/media/Righteous-Regular.fd0110471f2228c1808a.ttf",
+    "static/media/logo.png": "/FlixTV/static/media/logo.1d51eeebee7bbaa501fe.png",
+    "static/media/loader.gif": "/FlixTV/static/media/loader.928a3f84ad0de603b1ae.gif",
+    "index.html": "/FlixTV/index.html",
+    "main.df0c26f2.css.map": "/FlixTV/static/css/main.df0c26f2.css.map",
+    "main.f87c5782.js.map": "/FlixTV/static/js/main.f87c5782.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.df0c26f2.css",
+    "static/js/main.f87c5782.js"
+  ]
+}
