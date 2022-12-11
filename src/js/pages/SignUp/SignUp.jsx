@@ -151,7 +151,7 @@ export const SignUp = () => {
                   </Button>
                   <Grid container>
                     <Grid item>
-                      <Link href="/login" variant="body2" color="#666">
+                      <Link to={"/login"} variant="body2" color="#666">
                         {"Have an account?"}
                       </Link>
                     </Grid>

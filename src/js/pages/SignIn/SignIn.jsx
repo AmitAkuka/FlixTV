@@ -150,7 +150,7 @@ export const SignIn = () => {
                   <Grid container>
                     <Grid item xs>
                       <Link
-                        href="/password-recovery"
+                        to={"/password-recovery"}
                         variant="body2"
                         color="#9b9b9b"
                       >
@@ -158,7 +158,7 @@ export const SignIn = () => {
                       </Link>
                     </Grid>
                     <Grid item>
-                      <Link href="/signup" variant="body2" color="#9b9b9b">
+                      <Link to={"/signup"} variant="body2" color="#9b9b9b">
                         {"Don't have an account?"}
                       </Link>
                     </Grid>
