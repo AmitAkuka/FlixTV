@@ -62,6 +62,10 @@ export const SignUp = () => {
     return errors
   }
 
+  const onLinkSelect = (path) => {
+    navigate(path)
+  } 
+
   return (
     <div className="main-sign-up-container">
       <ThemeProvider theme={theme}>
@@ -151,7 +155,7 @@ export const SignUp = () => {
                   </Button>
                   <Grid container>
                     <Grid item>
-                      <Link to={"/login"} variant="body2" color="#666">
+                      <Link onClick={() => onLinkSelect("/login")} variant="body2" color="#666">
                         {"Have an account?"}
                       </Link>
                     </Grid>

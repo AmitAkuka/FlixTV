@@ -11,9 +11,11 @@ import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { Formik, Field, Form } from "formik"
 import { userService } from "../../services/userService"
 import { toast } from "react-toastify"
+import { useNavigate } from "react-router-dom"
 
 export const ResetPassword = () => {
   const [credentials, setCredentials] = React.useState({ email: "" })
+  const navigate = useNavigate()
 
   const theme = createTheme({
     components: {
@@ -61,6 +63,10 @@ export const ResetPassword = () => {
     if (!email) errors.email = "Missing email input"
     return errors
   }
+
+  const onLinkSelect = (path) => {
+    navigate(path)
+  } 
 
   return (
     <div className="main-sign-in-container">
@@ -123,7 +129,7 @@ export const ResetPassword = () => {
                   </Button>
                   <Grid container>
                     <Grid item>
-                      <Link href="/login" variant="body2" color="#9b9b9b">
+                      <Link onClick={() => onLinkSelect("/login")} variant="body2" color="#9b9b9b">
                         {"Return to login"}
                       </Link>
                     </Grid>

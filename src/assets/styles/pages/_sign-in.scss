@@ -13,3 +13,11 @@
         background-color: #ff9500;
     }
 }
+
+.MuiGrid-root.MuiGrid-container{
+    & > .MuiGrid-root.MuiGrid-item{
+        & > a {
+            cursor: pointer;
+        }
+    }
+} 
