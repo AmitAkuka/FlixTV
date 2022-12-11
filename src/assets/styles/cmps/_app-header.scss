@@ -39,4 +39,54 @@
       }
     }
   }
+
+  & > .hamburger-menu-container {
+    height: 38px;
+    display: none;
+
+    .hamburger-menu {
+      height: 100%;
+      width: 100%;
+      fill: white;
+      cursor: pointer;
+    }
+  }
+
+  & > .hamburger-popup-menu-container {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    z-index: 5;
+    min-height: 100vh;
+    top: 66px;
+    width: 100%;
+    left: 0;
+    transition: all 0.25s ease-in-out 0s;
+    background-color: #050811;
+
+    & > a {
+      width: 100%;
+      padding: 1rem 2rem;
+      font-size: 1.8rem;
+      font-weight: 700;
+      border-bottom: 1px solid black;
+
+      &:hover {
+        opacity: 0.9;
+        background-color: #fd3401;
+      }
+    }
+  }
+}
+
+@media (max-width: 650px) {
+  .main-header-container {
+    & > .header-toggle-btns-container,
+    & > .header-btns-container {
+      display: none;
+    }
+    .hamburger-menu-container {
+      display: block;
+    }
+  }
 }

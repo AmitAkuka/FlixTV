@@ -1,9 +1,9 @@
-import { Home } from './js/pages/home.jsx'
-import { AppWatchlist } from './js/pages/app-watchlist.jsx'
-import { ShowDetails } from './js/pages/show-details.jsx'
-import { SignIn } from './js/pages/sign-in'
-import { SignUp } from './js/pages/sign-up'
-import { ResetPassword } from './js/pages/reset-password'
+import { Home } from './js/pages/Home/Home'
+import { AppWatchlist } from './js/pages/AppWatchlist/AppWatchlist'
+import { ShowDetails } from './js/pages/ShowDetails/ShowDetails'
+import { SignIn } from './js/pages/SignIn/SignIn'
+import { SignUp } from './js/pages/SignUp/SignUp'
+import { ResetPassword } from './js/pages/ResetPassword/ResetPassword'
 
 
 export const routes = [

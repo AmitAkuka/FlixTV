@@ -1,4 +1,4 @@
-import { ShowActorPreview } from "./show-actor-preview.jsx"
+import { ShowActorPreview } from "../ShowActorPreview/ShowActorPreview"
 
 export const ShowActorList = ({ actors }) => {
   return <div className="show-actor-container">

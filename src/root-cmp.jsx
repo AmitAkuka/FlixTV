@@ -1,13 +1,31 @@
-import React from 'react'
-import { Route, Routes } from 'react-router-dom'
-import { routes } from './routes.js'
-import { AppHeader } from './js/cmps/app-header.jsx'
-import { AppFooter } from './js/cmps/app-footer.jsx';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import React from "react"
+import { useEffect, useState } from "react"
+import { Route, Routes } from "react-router-dom"
+import { routes } from "./routes.js"
+import { AppHeader } from "./js/cmps/AppHeader/AppHeader"
+import { AppFooter } from "./js/cmps/AppFooter/AppFooter"
+import { ScrollUpBtn } from "./js/cmps/ScrollUpBtn/ScrollUpBtn"
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 export function App() {
+  const [isScrollBtnShown, setIsScrollBtnShown] = useState(null)
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (isScrollBtnShown === null && window.pageYOffset >= 1)
+        setIsScrollBtnShown(true)
+    }, 50)
+    window.addEventListener("scroll", () => {
+      if (!window.pageYOffset >= 10 && window.pageYOffset !== 0) return
+      checkWindowYOffset(window.pageYOffset)
+    })
+  }, [])
+
+  const checkWindowYOffset = (pageYOffset) => {
+    setIsScrollBtnShown(10 <= pageYOffset)
+  }
+
   return (
     <div className="App">
       <AppHeader />
@@ -16,7 +34,8 @@ export function App() {
           <Route key={idx} path={route.path} element={<route.component />} />
         ))}
       </Routes>
-      <AppFooter/>
+      <AppFooter />
+      {isScrollBtnShown && <ScrollUpBtn />}
       <ToastContainer
         theme="dark"
         position="bottom-right"

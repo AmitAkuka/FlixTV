@@ -1,4 +1,4 @@
-import { ShowPreview } from "./show-preview.jsx"
+import { ShowPreview } from "../ShowPreview/ShowPreview"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Autoplay, Pagination } from "swiper"
 import "swiper/css"

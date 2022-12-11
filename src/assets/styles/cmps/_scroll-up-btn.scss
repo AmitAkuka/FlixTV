@@ -1,0 +1,26 @@
+.main-scroll-up-btn-container {
+  position: fixed;
+  height: 50px;
+  width: 50px;
+  background-color: #fe6b02;
+  z-index: 9999;
+  right: 40px;
+  bottom: 80px;
+  border-radius: 50px;
+  transition: all 0.3s;
+  cursor: pointer;
+  &:hover {
+    background-color: #fe8802;
+  }
+  & > svg {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .main-scroll-up-btn-container {
+    right: 25px;
+    bottom: 60px;
+  }
+}

@@ -13,7 +13,6 @@ const API_KEY = '30d342b5df6e9f466c294bed4cecad48'
 
 async function query (filterBy,pageNum) {
   try{
-    console.log('getting shows by filter:', filterBy)
     const {data} = (filterBy.genereId === 99999) 
     //if id 99999 sending xhr to get pupular shows, which is the default
     ? await axios.get(`${BASE_URL}/tv/popular?api_key=${API_KEY}&language=en-US&page=${pageNum}`)
@@ -42,7 +41,6 @@ async function queryById (showId) {
     const { data } = await axios.get(`${BASE_URL}/tv/${showId}?api_key=${API_KEY}&language=en-US`)
     const actorsDetails = await _queryActorsListById(showId)
     const suggestedShows = await _querySuggestedShowsById(showId)
-    console.log('got suggested shows:',suggestedShows)
     data.actors = actorsDetails
     data.suggestedShows = suggestedShows
     return data
@@ -63,7 +61,6 @@ async function queryTrailerById (showId) {
 
 async function queryByName (showName,pageNum) {
   try {
-    console.log('Service searching by name:',showName)
     const { data } = await axios.get(`${BASE_URL}/search/tv?api_key=${API_KEY}&query=${showName}&page=${pageNum}`)
     return {results: data.results, totalPages: data.total_pages, currPage: data.page}
   } catch (err){

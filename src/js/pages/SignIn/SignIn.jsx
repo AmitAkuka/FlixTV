@@ -1,23 +1,29 @@
 import * as React from "react"
+// import Avatar from "@mui/material/Avatar"
 import Button from "@mui/material/Button"
 import CssBaseline from "@mui/material/CssBaseline"
 import TextField from "@mui/material/TextField"
 import Link from "@mui/material/Link"
 import Grid from "@mui/material/Grid"
 import Box from "@mui/material/Box"
+// import LockOutlinedIcon from "@mui/icons-material/LockOutlined"
 import Typography from "@mui/material/Typography"
 import Container from "@mui/material/Container"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { Formik, Field, Form } from "formik"
-import { userService } from '../services/userService'
-import { useDispatch } from 'react-redux'
-import { useNavigate } from "react-router"
-import { toast } from 'react-toastify'
+import { toast } from "react-toastify"
+import { userService } from "../../services/userService"
+import { setUser } from "../../store/user/user.action"
+import { useDispatch } from "react-redux"
+import { useNavigate } from "react-router-dom"
 
-export const ResetPassword = () => {
+export const SignIn = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const [credentials, setCredentials] = React.useState({ email: "" })
+  const [credentials, setCredentials] = React.useState({
+    email: "",
+    password: "",
+  })
 
   const theme = createTheme({
     components: {
@@ -49,26 +55,26 @@ export const ResetPassword = () => {
     )
   }
 
-  const onResetPassword = async ({ email }) => {
+  const onLogin = async (cred) => {
     try {
-        console.log(email)
-      await userService.resetPassword(email)
-      // console.log(user)
-      // if (!user) return
-      // dispatch(setUser(user))
-      // navigate("/")
-    
+      const user = await userService.login(cred)
+      if (!user) return
+      dispatch(setUser(user))
+      navigate("/")
+      toast.success("Logged in Successfully!")
     } catch (error) {
       toast.error("Wrong email or password")
     }
   }
 
-  const onValidate = ({ email }) => {
+  const onValidate = ({ email, password }) => {
     const errors = {}
     if (!email) errors.email = "Missing email input"
+    if (!password || password.length < 6)
+      errors.password = "Passwords must be at least six characters."
+
     return errors
   }
-
   return (
     <div className="main-sign-in-container">
       <ThemeProvider theme={theme}>
@@ -83,20 +89,20 @@ export const ResetPassword = () => {
             }}
           >
             {/* <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-                <LockOutlinedIcon />
-              </Avatar> */}
+              <LockOutlinedIcon />
+            </Avatar> */}
             <Typography
               component="h1"
               variant="h5"
               sx={{ fontWeight: 700, fontSize: "2.375rem" }}
             >
-              Reset My Password
+              Log Into My Account
             </Typography>
             <Formik
               validateOnChange
               validate={onValidate}
               initialValues={credentials}
-              onSubmit={onResetPassword}
+              onSubmit={onLogin}
             >
               {({ errors }) => (
                 <Form>
@@ -111,6 +117,19 @@ export const ResetPassword = () => {
                     sx={{ backgroundColor: "#eee" }}
                   />
                   {<span className="error">{errors.email}</span>}
+                  <Field
+                    as={TextField}
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="password"
+                    placeholder="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                    sx={{ backgroundColor: "#eee" }}
+                  />
+                  {<span className="error">{errors.password}</span>}
                   <Button
                     type="submit"
                     fullWidth
@@ -126,12 +145,21 @@ export const ResetPassword = () => {
                       fontWeight: "600",
                     }}
                   >
-                    Send Reset Link
+                    Log In
                   </Button>
                   <Grid container>
+                    <Grid item xs>
+                      <Link
+                        href="/password-recovery"
+                        variant="body2"
+                        color="#9b9b9b"
+                      >
+                        Forgot password?
+                      </Link>
+                    </Grid>
                     <Grid item>
-                      <Link href="/login" variant="body2" color="#9b9b9b">
-                        {"Return to login"}
+                      <Link href="/signup" variant="body2" color="#9b9b9b">
+                        {"Don't have an account?"}
                       </Link>
                     </Grid>
                   </Grid>

@@ -1,29 +1,19 @@
 import * as React from "react"
-// import Avatar from "@mui/material/Avatar"
 import Button from "@mui/material/Button"
 import CssBaseline from "@mui/material/CssBaseline"
 import TextField from "@mui/material/TextField"
 import Link from "@mui/material/Link"
 import Grid from "@mui/material/Grid"
 import Box from "@mui/material/Box"
-// import LockOutlinedIcon from "@mui/icons-material/LockOutlined"
 import Typography from "@mui/material/Typography"
 import Container from "@mui/material/Container"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { Formik, Field, Form } from "formik"
+import { userService } from "../../services/userService"
 import { toast } from "react-toastify"
-import { userService } from "../services/userService"
-import { setUser } from "../store/user/user.action"
-import { useDispatch } from "react-redux"
-import { useNavigate } from "react-router-dom"
 
-export const SignIn = () => {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const [credentials, setCredentials] = React.useState({
-    email: "",
-    password: "",
-  })
+export const ResetPassword = () => {
+  const [credentials, setCredentials] = React.useState({ email: "" })
 
   const theme = createTheme({
     components: {
@@ -55,27 +45,23 @@ export const SignIn = () => {
     )
   }
 
-  const onLogin = async (cred) => {
+  const onResetPassword = async ({ email }) => {
     try {
-      const user = await userService.login(cred)
-      console.log(user)
-      if (!user) return
-      dispatch(setUser(user))
-      navigate("/")
-      toast.success("Logged in Successfully!")
+      await userService.resetPassword(email)
+      // if (!user) return
+      // dispatch(setUser(user))
+      // navigate("/")
     } catch (error) {
       toast.error("Wrong email or password")
     }
   }
 
-  const onValidate = ({ email, password }) => {
+  const onValidate = ({ email }) => {
     const errors = {}
     if (!email) errors.email = "Missing email input"
-    if (!password || password.length < 3)
-      errors.password = "Passwords must be at least three characters."
-
     return errors
   }
+
   return (
     <div className="main-sign-in-container">
       <ThemeProvider theme={theme}>
@@ -90,20 +76,20 @@ export const SignIn = () => {
             }}
           >
             {/* <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-              <LockOutlinedIcon />
-            </Avatar> */}
+                <LockOutlinedIcon />
+              </Avatar> */}
             <Typography
               component="h1"
               variant="h5"
               sx={{ fontWeight: 700, fontSize: "2.375rem" }}
             >
-              Log Into My Account
+              Reset My Password
             </Typography>
             <Formik
               validateOnChange
               validate={onValidate}
               initialValues={credentials}
-              onSubmit={onLogin}
+              onSubmit={onResetPassword}
             >
               {({ errors }) => (
                 <Form>
@@ -118,19 +104,6 @@ export const SignIn = () => {
                     sx={{ backgroundColor: "#eee" }}
                   />
                   {<span className="error">{errors.email}</span>}
-                  <Field
-                    as={TextField}
-                    margin="normal"
-                    required
-                    fullWidth
-                    name="password"
-                    placeholder="Password"
-                    type="password"
-                    id="password"
-                    autoComplete="current-password"
-                    sx={{ backgroundColor: "#eee" }}
-                  />
-                  {<span className="error">{errors.password}</span>}
                   <Button
                     type="submit"
                     fullWidth
@@ -146,17 +119,12 @@ export const SignIn = () => {
                       fontWeight: "600",
                     }}
                   >
-                    Log In
+                    Send Reset Link
                   </Button>
                   <Grid container>
-                    <Grid item xs>
-                      <Link href="/password-recovery" variant="body2"  color="#9b9b9b">
-                        Forgot password?
-                      </Link>
-                    </Grid>
                     <Grid item>
-                      <Link href="/signup" variant="body2" color="#9b9b9b">
-                        {"Don't have an account?"}
+                      <Link href="/login" variant="body2" color="#9b9b9b">
+                        {"Return to login"}
                       </Link>
                     </Grid>
                   </Grid>

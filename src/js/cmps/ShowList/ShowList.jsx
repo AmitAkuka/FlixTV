@@ -1,12 +1,15 @@
-import { ShowPreview } from "./show-preview.jsx"
+import { ShowPreview } from "../ShowPreview/ShowPreview"
 
 export const ShowList = ({ shows, onSelectShow }) => {
-  console.log(shows)
   return (
     <section className="show-list-container main-layout">
       {!!shows.length &&
         shows.map((show) => (
-          <ShowPreview key={show.id + show.first_air_date} show={show} onSelectShow={onSelectShow} />
+          <ShowPreview
+            key={show.id}
+            show={show}
+            onSelectShow={onSelectShow}
+          />
         ))}
       {!shows.length && <h2>No results found</h2>}
     </section>

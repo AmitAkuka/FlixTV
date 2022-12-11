@@ -18,11 +18,21 @@ export function userLogout() {
 }
 
 export function addToWatchlist(userId, show) {
-  return (dispatch) => {
-    userService.addToWatchlist(userId, show)
+  return async (dispatch) => {
+    const updatedWatchlist = await userService.addToWatchlist(userId, show)
     dispatch({
       type: "UPDATE_WATCHLIST",
-      show,
+      updatedWatchlist,
+    })
+  }
+}
+
+export function removeFromWatchlist(userId, showId) {
+  return async (dispatch) => {
+    const updatedWatchlist = await userService.removeFromWatchlist(userId, showId)
+    dispatch({
+      type: "UPDATE_WATCHLIST",
+      updatedWatchlist,
     })
   }
 }

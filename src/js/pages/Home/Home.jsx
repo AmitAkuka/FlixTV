@@ -1,13 +1,18 @@
 import { useEffect } from "react"
 import { useSearchParams, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { loadShows, loadShowCategories, setFilterBy, getShowsByName } from "../store/show/show.action.js"
+import {
+  loadShows,
+  loadShowCategories,
+  setFilterBy,
+  getShowsByName,
+} from "../../store/show/show.action.js"
 import InfiniteScroll from "react-infinite-scroller"
 
-import { AppHero } from "../cmps/app-hero.jsx"
-import { AppLoader } from "../cmps/app-loader.jsx"
-import { ShowList } from "../cmps/show-list.jsx"
-import { CategoryFilter } from "../cmps/category-filter.jsx"
+import { AppHero } from "../../cmps/AppHero/AppHero"
+import { AppLoader } from "../../cmps/AppLoader/AppLoader"
+import { ShowList } from "../../cmps/ShowList/ShowList"
+import { CategoryFilter } from "../../cmps/CategoryFilter/CategoryFilter"
 
 export const Home = () => {
   const { shows, showCategories } = useSelector((storeState) => storeState.showModule)
@@ -16,14 +21,10 @@ export const Home = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    console.log("home cmp mounted!")
     const filter = searchParams.get("filter")
     if (filter) dispatch(setFilterBy(filter))
     dispatch(loadShowCategories())
     dispatch(loadShows())
-    return () => {
-      console.log("home unmount")
-    }
   }, [])
 
   const onChangeGenereFilter = (filter) => {
@@ -32,12 +33,10 @@ export const Home = () => {
   }
 
   const onSelectShow = (id) => {
-    console.log("show selected:", id)
     navigate(`show/${id}`)
   }
 
   const onSetSearch = async ({ target }) => {
-    console.log(target.value)
     const showName = target.value
     await dispatch(getShowsByName(showName))
   }

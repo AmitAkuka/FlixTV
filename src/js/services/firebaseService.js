@@ -7,12 +7,10 @@ import {
   updateProfile,
   sendPasswordResetEmail,
 } from "firebase/auth"
-import { getDoc, getFirestore } from "firebase/firestore";
-import { collection, doc, addDoc, setDoc, getDocs } from "firebase/firestore"; 
+import { getDoc, getFirestore } from "firebase/firestore"
+import { doc, setDoc } from "firebase/firestore"
 
-
-
-// Your web app's Firebase configuration
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyB7dv8XC-5GXVrnN-2WVslDQ6Ia0i2PWF0",
   authDomain: "flixtv-1fdb7.firebaseapp.com",
@@ -68,30 +66,49 @@ const resetPassword = async (email) => {
   }
 }
 
-const getWatchlistByUserId = async(userId) => {
-  try{
-    const docRef = doc(db, 'watchlist-db', userId)
-    const docSnap  = await getDoc(docRef)
+const getWatchlistByUserId = async (userId) => {
+  try {
+    const docRef = doc(db, "watchlist-db", userId)
+    const docSnap = await getDoc(docRef)
     return docSnap
-  }catch(err){
+  } catch (err) {
     console.log(err)
   }
 }
 
 const addToWatchlist = async (userId, show) => {
-  try{
+  try {
     let updatedWatchList
-    console.log(userId,show)
-    const docSnap  = await getWatchlistByUserId(userId)
-    if(docSnap.exists()){
+    const docSnap = await getWatchlistByUserId(userId)
+    if (docSnap.exists()) {
       const { watchlist } = docSnap.data()
       updatedWatchList = [...watchlist, show]
-    }else{
+    } else {
       updatedWatchList = [show]
     }
-    await setDoc(doc(db, 'watchlist-db', userId), {watchlist: updatedWatchList})
+    await setDoc(doc(db, "watchlist-db", userId), {
+      watchlist: updatedWatchList,
+    })
     toast.success("Added to watchlist!")
-  }catch(err){
+    return updatedWatchList
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+const removeFromWatchlist = async (userId, showId) => {
+  try {
+    const docSnap = await getWatchlistByUserId(userId)
+    const { watchlist } = docSnap.data()
+    const updatedWatchList = watchlist.filter(
+      (watchlist) => watchlist.id !== showId
+    )
+    await setDoc(doc(db, "watchlist-db", userId), {
+      watchlist: updatedWatchList,
+    })
+    toast.success("Removed from watchlist!")
+    return updatedWatchList
+  } catch (err) {
     console.log(err)
   }
 }
@@ -102,7 +119,7 @@ const _getParsedError = (str) => {
     error = "Email already in use"
   } else if (str.includes("Password should be at least 6 characters")) {
     error = "Password should be at least 6 characters"
-  } else if(str.includes("auth/invalid-email")){
+  } else if (str.includes("auth/invalid-email")) {
     error = "Invalid email address"
   }
   return error
@@ -113,5 +130,6 @@ export const firebaseService = {
   createUser,
   resetPassword,
   getWatchlistByUserId,
-  addToWatchlist
+  addToWatchlist,
+  removeFromWatchlist,
 }

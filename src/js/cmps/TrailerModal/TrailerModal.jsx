@@ -26,8 +26,8 @@ export const TrailerModal = ({ youtubeId, setIsModalOpen }) => {
             url={`https://www.youtube.com/watch?v=${youtubeId}`}
             playing={true}
             controls={true}
-            height={"65vh"}
-            width={"55vw"}
+            height={"70vh"}
+            width={"75vw"}
           />
         </Box>
       </Modal>

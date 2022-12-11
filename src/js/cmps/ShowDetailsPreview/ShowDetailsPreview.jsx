@@ -1,9 +1,10 @@
-import { ShowRating } from './show-rating.jsx'
+import { ShowRating } from '../ShowRating/ShowRating'
 import PlayCircleIcon from '@mui/icons-material/PlayCircle'
 import PlaylistPlayIcon from '@mui/icons-material/PlaylistPlay'
-import { ShowEpisodeDetails } from './show-episode-details.jsx'
+import PlaylistRemoveIcon from '@mui/icons-material/PlaylistRemove'
+import { ShowEpisodeDetails } from '../ShowEpisodeDetails/ShowEpisodeDetails'
 
-export const ShowDetailsPreview = ({ selectedShow,handleTrailerClick, handleWatchlistClick }) => {
+export const ShowDetailsPreview = ({ selectedShow,handleTrailerClick, handleWatchlistClick, isShowInWatchlist }) => {
   const BASE_IMG_URL = 'https://image.tmdb.org/t/p/w500'
 
   const getShowYear = (date) =>  new Date(date).getFullYear()
@@ -40,9 +41,12 @@ export const ShowDetailsPreview = ({ selectedShow,handleTrailerClick, handleWatc
           <button className="trailer-btn" onClick={handleTrailerClick}>
             <PlayCircleIcon /> Watch trailer
           </button>
-          <button className="watchlist-btn" onClick={handleWatchlistClick}>
+          {!isShowInWatchlist && <button className="watchlist-btn" onClick={handleWatchlistClick}>
             <PlaylistPlayIcon /> Add to Watchlist
-          </button>
+          </button>}
+          {isShowInWatchlist && <button className="watchlist-btn" onClick={handleWatchlistClick}>
+            <PlaylistRemoveIcon /> Remove from Watchlist
+          </button>}
         </div>
         <ShowEpisodeDetails 
         episodesNum={number_of_episodes}

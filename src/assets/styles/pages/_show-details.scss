@@ -16,10 +16,11 @@
     // height: 100%;
 
     & .show-background-container {
-      height: 30vh;
-      background-repeat: no-repeat;
+      height: 35vh;
+      // background-repeat: no-repeat;
       background-size: cover;
       background-attachment: fixed;
+      background-repeat: round;
       filter: blur(8px) opacity(0.5);
     }
 
@@ -54,7 +55,7 @@
           gap: 10px;
           flex-basis: 50%;
           color: white;
-          font-family: 'Oswald';
+          font-family: "Oswald";
           & > h1 {
             font-size: 4rem;
           }
@@ -79,6 +80,7 @@
             display: flex;
             gap: 15px;
             transition: all 0.2s ease-out;
+            flex-wrap: wrap;
 
             & > button {
               display: flex;
@@ -118,7 +120,7 @@
 
         padding-top: 80px;
         color: white;
-        font-family: 'Oswald';
+        font-family: "Oswald";
         & > h1 {
           font-size: 2.5rem;
           padding-bottom: 40px;
@@ -160,13 +162,14 @@
           & .swiper-wrapper {
             height: 425px;
             padding-bottom: 60px;
-            
+
             & .swiper-slide {
               min-width: 250px;
               & > * {
                 border-radius: 5px;
                 height: 100%;
                 cursor: pointer;
+                background-repeat: round;
 
                 & .show-preview-details {
                   position: absolute;
@@ -178,11 +181,11 @@
                     font-family: sans-serif;
                   }
                   & > h2 {
-                    font-family: 'Oswald';
+                    font-family: "Oswald";
                   }
                   & > span {
                     color: #a5a5a5;
-                    font-family: 'Oswald';
+                    font-family: "Oswald";
                   }
                 }
               }
@@ -200,7 +203,6 @@
       }
     }
   }
-
 }
 
 //Media queries:
@@ -238,11 +240,18 @@
   }
 }
 
-@media (max-width: 1040px) {
+@media (max-width: 450px) {
   .main-details-container {
-    & .details-container {
-      & .show-details-container {
-        & .show-actor-container {
+    & > .details-container {
+      & > .show-details-container {
+        & > .main-show-details-preview {
+          & .show-info-container {
+            & .show-btns-container {
+              & > button {
+                width: 100%;
+              }
+            }
+          }
         }
       }
     }

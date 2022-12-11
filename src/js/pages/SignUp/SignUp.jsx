@@ -9,20 +9,20 @@ import Typography from "@mui/material/Typography"
 import Container from "@mui/material/Container"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { Formik, Field, Form } from "formik"
-import { userService } from '../services/userService'
-import { setUser } from '../store/user/user.action'
-import { useDispatch } from 'react-redux'
+import { userService } from "../../services/userService"
+import { setUser } from "../../store/user/user.action"
+import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router"
-import { toast } from 'react-toastify'
+import { toast } from "react-toastify"
 
 export const SignUp = () => {
-    const navigate = useNavigate()
-    const dispatch = useDispatch()
-    const [credentials, setCredentials] = React.useState({
-      email: "",
-      password: "",
-      displayName: "",
-    })
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const [credentials, setCredentials] = React.useState({
+    email: "",
+    password: "",
+    displayName: "",
+  })
 
   const theme = createTheme({
     components: {
@@ -33,22 +33,19 @@ export const SignUp = () => {
             backgroundColor: "whitesmoke",
             lineHeight: "unset",
             letterSpacing: 0,
-          }
-        }
-      }
-    }
+          },
+        },
+      },
+    },
   })
-
 
   const onSignup = async (cred) => {
     try {
       const user = await userService.signup(cred)
-      console.log(user)
-      if(!user) return
-      console.log('setting user:',user)
+      if (!user) return
       dispatch(setUser(user))
-      toast.success('Signed up Successfully!')
-      navigate('/')
+      toast.success("Signed up Successfully!")
+      navigate("/")
     } catch (error) {
       toast.error(error.response.data.err)
     }
@@ -64,7 +61,6 @@ export const SignUp = () => {
 
     return errors
   }
-
 
   return (
     <div className="main-sign-up-container">

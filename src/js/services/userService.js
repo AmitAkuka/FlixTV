@@ -13,6 +13,7 @@ export const userService = {
   // getById,
   resetPassword,
   addToWatchlist,
+  removeFromWatchlist
 }
 
 window.userService = userService
@@ -69,18 +70,28 @@ function getLoggedinUser() {
   return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
 }
 
-function updatedLocalUser(show){
+function updatedLocalUser(watchlist){
   const currUser = getLoggedinUser()
-  const updatedUser = {...currUser, watchlist: [...currUser.watchlist ,show]}
+  const updatedUser = {...currUser, watchlist }
   saveLocalUser(updatedUser)
+  return updatedUser.watchlist
 }
 
 async function addToWatchlist(userId, show) {
   try {
-    console.log("adding to watchlist")
-    console.log(show)
-    await firebaseService.addToWatchlist(userId, show)
-    updatedLocalUser(show)
+    const updatedWatchlist = await firebaseService.addToWatchlist(userId, show)
+    updatedLocalUser(updatedWatchlist)
+    return updatedWatchlist
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+async function removeFromWatchlist(userId, showId) {
+  try {
+    const updatedWatchlist = await firebaseService.removeFromWatchlist(userId, showId)
+    updatedLocalUser(updatedWatchlist)
+    return updatedWatchlist
   } catch (err) {
     console.log(err)
   }

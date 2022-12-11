@@ -9,7 +9,7 @@ export function userReducer(state = initialState, action) {
     case 'SET_USER':
       return { ...state, user: action.user }
     case 'UPDATE_WATCHLIST':
-      return { ...state, user: {...state.user, watchlist: [...state.user.watchlist, action.show]} }
+      return { ...state, user: {...state.user, watchlist: action.updatedWatchlist} }
 
     default:
       return state

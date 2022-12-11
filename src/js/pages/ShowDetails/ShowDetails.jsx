@@ -6,19 +6,23 @@ import {
   loadShowCategories,
   clearSelectedShow,
   getTrailerById,
-} from "../store/show/show.action.js"
-import { addToWatchlist } from "../store/user/user.action.js"
+} from "../../store/show/show.action.js"
+import {
+  addToWatchlist,
+  removeFromWatchlist,
+} from "../../store/user/user.action.js"
 
-import { ShowDetailsPreview } from "../cmps/show-details-preview.jsx"
-import { ShowActorList } from "../cmps/show-actor-list.jsx"
-import { ShowSuggestionList } from "../cmps/show-suggestion-list.jsx"
-import { AppLoader } from "../cmps/app-loader.jsx"
-import { TrailerModal } from "../cmps/trailer-modal.jsx"
+import { ShowDetailsPreview } from "../../cmps/ShowDetailsPreview/ShowDetailsPreview"
+import { ShowActorList } from "../../cmps/ShowActorList/ShowActorList"
+import { ShowSuggestionList } from "../../cmps/ShowSuggestionList/ShowSuggestionList"
+import { AppLoader } from "../../cmps/AppLoader/AppLoader"
+import { TrailerModal } from "../../cmps/TrailerModal/TrailerModal"
 import { toast } from "react-toastify"
 
 export const ShowDetails = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [youtubeId, setYoutubeId] = useState(null)
+  const [isShowInWatchlist, setIsShowInWatchlist] = useState(null)
   const { selectedShow } = useSelector((storeState) => storeState.showModule)
   const { user } = useSelector((storeState) => storeState.userModule)
   const { id } = useParams()
@@ -27,7 +31,6 @@ export const ShowDetails = () => {
   const BASE_IMG_URL = "https://image.tmdb.org/t/p/w500"
 
   useEffect(() => {
-    console.log("show details mounted!", id)
     window.scrollTo(0, 0)
     dispatch(setSelectedShow(id))
     dispatch(loadShowCategories())
@@ -35,6 +38,11 @@ export const ShowDetails = () => {
       dispatch(clearSelectedShow())
     }
   }, [])
+
+  useEffect(() => {
+    const showInWatchlist = user?.watchlist.find((show) => show.id === +id)
+    setIsShowInWatchlist(showInWatchlist)
+  }, [user])
 
   const handleTrailerClick = async () => {
     const videoId = await dispatch(getTrailerById(id))
@@ -46,31 +54,38 @@ export const ShowDetails = () => {
     setYoutubeId(videoId)
   }
 
-  const handleWatchlistClick = async () => {
+  const handleWatchlistClick = () => {
     if (!user) {
       toast.error("Login is required")
       return
     }
-    const { id, name, poster_path, first_air_date, genres } = selectedShow
-    const genreNames = genres.flatMap((g) => g.name)
-    const showToSave = { id, poster_path, name, first_air_date, genres: genreNames }
-    dispatch(addToWatchlist(user.uid, showToSave))
+    if (isShowInWatchlist) {
+      dispatch(removeFromWatchlist(user.uid, +id))
+      // setIsShowInWatchlist(false)
+    } else {
+      const { id, name, poster_path, first_air_date, genres } = selectedShow
+      const genreNames = genres.flatMap((g) => g.name)
+      const showToSave = {
+        id,
+        poster_path,
+        name,
+        first_air_date,
+        genres: genreNames,
+      }
+      dispatch(addToWatchlist(user.uid, showToSave))
+    }
   }
 
   const onSelectShow = (id) => {
     navigate(`../show/${id}`, { replace: true })
     navigate(0)
-    // window.scrollTo(0, 0)
-    // dispatch(clearSelectedShow())
-    // dispatch(setSelectedShow(id))
   }
 
-  console.log("selected show:", selectedShow)
   const { backdrop_path, actors, suggestedShows } = selectedShow || {}
 
   return (
     <section className="main-details-container">
-      {!selectedShow && <AppLoader />}
+      {(!selectedShow || isShowInWatchlist === null) && <AppLoader />}
       {selectedShow && (
         <div className="details-container">
           <div
@@ -82,6 +97,7 @@ export const ShowDetails = () => {
               selectedShow={selectedShow}
               handleTrailerClick={handleTrailerClick}
               handleWatchlistClick={handleWatchlistClick}
+              isShowInWatchlist={isShowInWatchlist}
             />
             <ShowActorList actors={actors} />
             <ShowSuggestionList

@@ -3,12 +3,10 @@ import { showService } from '../../services/showService.js'
 export function loadShows(page = 1) {
   return async (dispatch, getState) => {
     try {
-      console.log('trying to load', page)
       const { filterBy, shows } = getState().showModule
       let newShows = (filterBy.name) 
       ? await showService.queryByName(filterBy.name, page) 
       : await showService.query(filterBy, page)
-      console.log('got shows:', newShows)
       if (page > 1) newShows.results = [...shows.results, ...newShows.results]
       dispatch({ type: 'SET_SHOWS', shows: newShows })
     } catch (err) {
@@ -45,7 +43,6 @@ export function getShowsByName(showName){
         return
       }
       const showList = await showService.queryByName(showName)
-      console.log(showList)
       dispatch({ type: 'SET_SHOWS', shows: showList })
     }catch(err){
       console.log(err)
@@ -67,7 +64,6 @@ export function setSelectedShow(id) {
 export function clearSelectedShow() {
   return async (dispatch) => {
     try {
-      console.log('clearing!')
       dispatch({ type: 'SET_SELECTED_SHOW', selectedShow: null })
     } catch (err) {
       console.log(err)
@@ -79,7 +75,6 @@ export function getTrailerById(id){
   return async () => {
     try{
       const videoId = await showService.queryTrailerById(id)
-      console.log(videoId)
       return videoId
     }catch (err){
       console.log(err)
