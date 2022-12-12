@@ -13,7 +13,7 @@ export const AppHeader = () => {
   const navigate = useNavigate()
 
   const handleLogout = () => {
-    if(isMenuOpen) setIsMenuOpen(false)
+    if (isMenuOpen) setIsMenuOpen(false)
     dispatch(userLogout())
     navigate("/")
     toast.success("Signed out Successfully!")
@@ -21,6 +21,47 @@ export const AppHeader = () => {
 
   const onMenuClick = () => {
     setIsMenuOpen((prevState) => !prevState)
+  }
+
+  const getMenuCmp = () => {
+    return (
+      <>
+        <h3>
+          Welcome, <span>{user.displayName}</span>
+        </h3>
+        <Link to={"/watchlist"}>Watchlist</Link>
+        <h3 className="logout-btn" onClick={handleLogout}>
+          Logout
+        </h3>
+      </>
+    )
+  }
+
+  const getMobileMenuCmp = () => {
+    if (user) {
+      return (
+        <>
+          <h3>
+            Welcome, <span>{user.displayName}</span>
+          </h3>
+          <NavLink onClick={() => setIsMenuOpen(false)} to="/">
+            Home
+          </NavLink>
+          <NavLink onClick={() => setIsMenuOpen(false)} to="/watchlist">
+            Watchlist
+          </NavLink>
+          <NavLink className="logout-btn" onClick={handleLogout} to="/">
+            Logout
+          </NavLink>
+        </>
+      )
+    } else if (!user) {
+      return (
+        <Link onClick={() => setIsMenuOpen(false)} to={"/login"}>
+          Login
+        </Link>
+      )
+    }
   }
 
   return (
@@ -31,35 +72,14 @@ export const AppHeader = () => {
       </Link>
       <div className="header-btns-container">
         {!user && <Link to={"/login"}>Login</Link>}
-        {user && (
-          <>
-            <h3>
-              Welcome, <span>{user.displayName}</span>
-            </h3>
-            <Link to={"/watchlist"}>Watchlist</Link>
-            <h3 className="logout-btn" onClick={handleLogout}>
-              Logout
-            </h3>
-          </>
-        )}
+        {user && getMenuCmp()}
       </div>
       <div onClick={onMenuClick} className="hamburger-menu-container">
         <MenuIcon className="hamburger-menu" />
       </div>
       {isMenuOpen && (
         <div className="hamburger-popup-menu-container">
-          <NavLink onClick={() => setIsMenuOpen(false)} to="/">
-            Home
-          </NavLink>
-          {user && <>
-          <NavLink onClick={() => setIsMenuOpen(false)} to="/watchlist">
-            Watchlist
-          </NavLink>
-          <NavLink className="logout-btn" onClick={handleLogout} to="/">
-            Logout
-          </NavLink>
-          </>}
-          {!user && <Link onClick={() => setIsMenuOpen(false)} to={"/login"}>Login</Link>}
+          {getMobileMenuCmp()}
         </div>
       )}
     </header>

@@ -77,7 +77,7 @@ export const ShowDetails = () => {
   }
 
   const onSelectShow = (id) => {
-    navigate(`../show/${id}`, { replace: true })
+    navigate(`/show/${id}`, { replace: true })
     navigate(0)
   }
 

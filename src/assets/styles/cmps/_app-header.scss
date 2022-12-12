@@ -65,14 +65,18 @@
     transition: all 0.25s ease-in-out 0s;
     background-color: #050811;
 
-    & > a {
+    & > * {
       width: 100%;
       padding: 1rem 2rem;
       font-size: 1.8rem;
       font-weight: 700;
       border-bottom: 1px solid black;
 
-      &:hover {
+      & > span{
+        color: 	#FCAF45;
+      }
+
+      &:hover:not(h3) {
         opacity: 0.9;
         background-color: #fd3401;
       }
