@@ -34,6 +34,7 @@ export const ShowPreview = ({ show, onSelectShow }) => {
     <section
       className="show-preview-container"
       onClick={() => onSelectShow(id)}
+      onTouchStart={() => onSelectShow(id)}
       style={{
         backgroundImage: (poster_path) ? `${IMG_GRADIENT},url(${BASE_IMG_URL}/${poster_path})` : `url(${noImg})`,
       }}
