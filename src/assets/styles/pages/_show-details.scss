@@ -165,10 +165,10 @@
 
             & .swiper-slide {
               min-width: 250px;
-              & > * {
+              cursor: pointer;
+              & > .show-preview-container {
                 border-radius: 5px;
                 height: 100%;
-                cursor: pointer;
                 background-repeat: round;
 
                 & .show-preview-details {
