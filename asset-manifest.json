@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/FlixTV/static/css/main.d9ad1d55.css",
+    "main.css": "/FlixTV/static/css/main.a4305ed6.css",
     "main.js": "/FlixTV/static/js/main.0566f537.js",
     "static/media/noImage.png": "/FlixTV/static/media/noImage.2dd79b44128643bf1b22.png",
     "static/media/heroBackground.jpg": "/FlixTV/static/media/heroBackground.9e37b5f2cde1d9785cf9.jpg",
@@ -9,11 +9,11 @@
     "static/media/logo.png": "/FlixTV/static/media/logo.1d51eeebee7bbaa501fe.png",
     "static/media/loader.gif": "/FlixTV/static/media/loader.928a3f84ad0de603b1ae.gif",
     "index.html": "/FlixTV/index.html",
-    "main.d9ad1d55.css.map": "/FlixTV/static/css/main.d9ad1d55.css.map",
+    "main.a4305ed6.css.map": "/FlixTV/static/css/main.a4305ed6.css.map",
     "main.0566f537.js.map": "/FlixTV/static/js/main.0566f537.js.map"
   },
   "entrypoints": [
-    "static/css/main.d9ad1d55.css",
+    "static/css/main.a4305ed6.css",
     "static/js/main.0566f537.js"
   ]
 }
