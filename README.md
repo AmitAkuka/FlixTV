@@ -1,46 +1,20 @@
-# Getting Started with Create React App and Redux
+# FlixTV
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+TV shows application allows you to search and view TV shows, watch the show rating, maintain your favorite shows and more!.
+![FlixTV1](https://github.com/AmitAkuka/FlixTV/assets/102300284/c43b117b-f324-4fec-91f4-2696cf17f90d)
+![FlixTV2](https://github.com/AmitAkuka/FlixTV/assets/102300284/0e834be3-3c61-4a10-ace8-e9360dbeaf2c)
+![FlixTV3](https://github.com/AmitAkuka/FlixTV/assets/102300284/20ace878-79d4-45f1-bca6-9c5044746539)
+![FlixTV4](https://github.com/AmitAkuka/FlixTV/assets/102300284/7ed7ba48-49cf-42a0-853b-838b8a07f78a)
+![FlixTV5](https://github.com/AmitAkuka/FlixTV/assets/102300284/05e4ae9e-a683-467d-9b3e-ae6ba38d2845)
+![FlixTV6](https://github.com/AmitAkuka/FlixTV/assets/102300284/b35c9a23-baa0-4d98-8c98-e06c0dcdfeff)
 
-## Available Scripts
+## About
 
-In the project directory, you can run:
+Project was build with React, Redux, React-player, SCSS, Firebase, loadash.
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+To install locally:
+clone repo 
+npm i
+npm run start
