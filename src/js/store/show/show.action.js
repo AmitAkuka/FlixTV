@@ -37,13 +37,7 @@ export function getShowsByName(showName){
   return async (dispatch) => {
     try{
       dispatch(setFilterBy({name: showName}))
-      //if no search input - query shows by genre..
-      if(!showName) {
-        dispatch(loadShows())
-        return
-      }
-      const showList = await showService.queryByName(showName)
-      dispatch({ type: 'SET_SHOWS', shows: showList })
+      dispatch(loadShows());
     }catch(err){
       console.log(err)
     }

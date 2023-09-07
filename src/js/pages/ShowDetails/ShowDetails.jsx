@@ -42,7 +42,7 @@ export const ShowDetails = () => {
   useEffect(() => {
     const showInWatchlist = user?.watchlist.find((show) => show.id === +id)
     setIsShowInWatchlist(showInWatchlist)
-  }, [user])
+  }, [user, id])
 
   const handleTrailerClick = async () => {
     const videoId = await dispatch(getTrailerById(id))

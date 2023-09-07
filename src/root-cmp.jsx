@@ -20,7 +20,7 @@ export function App() {
       if (!window.pageYOffset >= 10 && window.pageYOffset !== 0) return
       checkWindowYOffset(window.pageYOffset)
     })
-  }, [])
+  }, [isScrollBtnShown])
 
   const checkWindowYOffset = (pageYOffset) => {
     setIsScrollBtnShown(10 <= pageYOffset)
