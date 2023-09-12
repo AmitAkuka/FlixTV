@@ -1,6 +1,6 @@
 # FlixTV
 
-TV shows application allows you to search and view TV shows, watch the show rating, maintain your favorite shows and more!.
+TV shows application allows you to search and view TV shows, watch the show rating, maintain your favorite shows and more!.  
 Deployed app link: https://theflixtv.netlify.app/
 ![FlixTV1](https://github.com/AmitAkuka/FlixTV/assets/102300284/c43b117b-f324-4fec-91f4-2696cf17f90d)
 ![FlixTV2](https://github.com/AmitAkuka/FlixTV/assets/102300284/0e834be3-3c61-4a10-ace8-e9360dbeaf2c)
