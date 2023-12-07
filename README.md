@@ -11,7 +11,7 @@ Deployed app link: https://theflixtv.netlify.app/
 
 ## About
 
-Project was build with React, Redux, React-player, SCSS, Firebase, loadash.
+Project was built with React, Redux, React-player, SCSS, Firebase, loadash.
 
 ## Getting Started
 
